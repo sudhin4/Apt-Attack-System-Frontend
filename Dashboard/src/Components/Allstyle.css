@@ -29,7 +29,7 @@
 .Containerdiv{
     display: flex;
     flex-direction: column;
-    width: 100px;
+    width: 130px;
     border: 0.2px solid rgba(79, 79, 79, 0.192);
     padding: 20px;
     align-items: center;
@@ -126,7 +126,7 @@
 .iconstyle{
     font-size: 27px;
 }
-.status{
+.statuss{
     font-family: 'Poppins';
     font-weight: 600;
     font-size: 22px;
@@ -156,7 +156,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(0, 0, 0, 0.402);
-    width: 500px;
+    width: 580px;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 10px;
@@ -245,7 +245,138 @@
 .fullheaderbuttonsection{
     display: flex;
     flex-direction: row;
-    gap: 45%;
+    gap: 55%;
     justify-content: center;
     padding-bottom: 20px;
+}
+
+.ip-container{
+  padding:20px;
+  background:white;
+  margin-top: 20px;
+
+}
+
+.title{
+  text-align:center;
+  margin-bottom:20px;
+  font-family: 'Poppins';
+}
+
+.ip-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.ip-table th{
+  background:black;
+  color:white;
+  padding:10px;
+  font-family: 'Poppins';
+}
+
+.ip-table td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  font-family: 'Poppins';
+  position: relative;
+  left: 50px;
+}
+
+.ip{
+  color:red;
+  font-weight:bold;
+}
+
+.score{
+  font-weight:bold;
+}
+
+.block-btn{
+  background:black;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  cursor:pointer;
+}
+
+.block-btn:hover{
+  background:red;
+}
+
+.blockingstatus{
+  font-weight:bold;
+}
+
+.blocked{
+  color:red;
+}
+
+.suspicious{
+  color:orange;
+}
+.greenstatus{
+    color: green;
+}
+.redstatus{
+    color: red;
+}
+
+.StatusFromtable{
+    font-size: 20px;
+    color: red;
+}
+
+
+/* Graph style */
+
+.graph-container{
+display:flex;
+gap:20px;
+padding:20px;
+background:#020b1c;
+}
+
+.chart-card{
+flex:1;
+background:#071a35;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+}
+
+.chart-title{
+color:#9bb4ff;
+font-size:14px;
+margin-bottom:10px;
+letter-spacing:1px;
+}
+
+
+.barchart1{
+    width: max-content;
+    height: max-content;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.087);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.Barchartsectioninapp{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.Lastmetrictablee{
+    width: 90%;
+}
+
+.allmetrictablesection{
+    position: relative;
+    left: 80px;
 }

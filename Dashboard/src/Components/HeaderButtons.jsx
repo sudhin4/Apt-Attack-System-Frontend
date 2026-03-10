@@ -10,12 +10,12 @@ function HeaderButtons(){
         <div className="fullheaderbuttonsection">
          <div  className="firstsectionbuttons">
             <button className="firstsectionbuttontag"><FaRegClock className="firstsectionicon"/>Real Time</button>
-            <button className="firstsectionbuttontag"><FaHistory className="firstsectionicon"/>History</button>
+            <button className="firstsectionbuttontag"><FaHistory className="firstsectionicon"/>Live</button>
         </div>
 
         <div className="secondsectionbuttons">
-            <button className="secondsectionbuttontag button1">Start</button>
-            <button className="secondsectionbuttontag button2">Stop</button>
+            <button className="secondsectionbuttontag button1">Initialize</button>
+            {/* <button className="secondsectionbuttontag button2">Stop</button> */}
             {/* <button className="secondsectionbuttontag button3">Block</button> */}
         </div>   
         </div>

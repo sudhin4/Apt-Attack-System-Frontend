@@ -3,6 +3,10 @@ import Buttons from "./Components/Buttons";
 import Containers from "./Components/Containers";
 import Graph from "./Components/Graph";
 
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
 // icons for the containers
 import { BiError } from "react-icons/bi"; // Anamloy icons
 import { FaLink } from "react-icons/fa6"; // Connection icons
@@ -17,6 +21,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Filevaluecontainer from "./Components/FileValuecontainer";
 import HeaderButtons from "./Components/HeaderButtons";
+import SuspiciousIPTable from "./Components/ResponseAction";
+import RiskScoreBarChart from "./Components/Chart";
+import RiskScoreBarChart2 from "./Components/Riskscore_chart";
+import MetricsTable from "./Components/LastMetrics_Table";
 
 function App() {
   const [backendvaluegetter, setbackendvaluegetter] = useState([]); // Apt attack value api usestate
@@ -30,6 +38,9 @@ function App() {
   const [Status, setstatus] = useState([]);
   const [noofipconnection, setnoofipconnection] = useState([]);
 
+  //color of status box
+  const [statuscolor, setstatuscolor] = useState();
+
   const fetchuser = async () => {
     try {
       const response = await axios.get(
@@ -40,9 +51,14 @@ function App() {
       console.log("Error feteching Data :", err);
     }
   };
-
   useEffect(() => {
-    fetchuser();
+    fetchuser(); // immediate API call
+
+    const interval = setInterval(() => {
+      fetchuser();
+    }, 2000); // every 3 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -50,18 +66,24 @@ function App() {
       const ml = backendvaluegetter?.ml_detection;
       const features = ml?.realtime_features;
       const suspicious = backendvaluegetter?.ml_detection?.suspicious_ip;
+
       console.log(suspicious, "Inside if");
+      console.log(ml, "Inside if");
+      console.log(features, "Inside if");
 
       setanamoly(ml?.anomaly);
-      setattackscore(ml?.confidence_score);
+      setattackscore(ml?.risk_score);
 
       setconnectionno(features?.connection_count);
       setcpuusage(features?.cpu);
       setmemoryusage(features?.memory);
       setnetworkpackets(features?.network_packets);
 
-      setstatus(backendvaluegetter?.ml_detection?.suspicious_ip?.status);
-      setnoofipconnection(suspicious?.ports_accessed?.length);
+      setstatus(backendvaluegetter?.ml_detection?.suspicious_ip?.threat_level);
+
+      setnoofipconnection(
+        backendvaluegetter?.ml_detection?.suspicious_ip?.ports_accessed?.length,
+      );
     } else {
       console.log("Problem in API call");
     }
@@ -71,29 +93,18 @@ function App() {
 
   useEffect(() => {
     const Containerstatus = {
-      anomaly: Anamolyscore === true,
-      connection: Connectionno <= 100,
-      cpu: cpuusage <= 80,
-      memory: Memoryusage <= 80,
+      anomaly: !Anamolyscore,
+      connection: Connectionno <= 180,
+      cpu: cpuusage <= 70,
+      memory: Memoryusage <= 70,
       packets: Networkpackets <= 10000,
-      attack: Attackscore <= 1,
+      attack: Attackscore,
       ports: noofipconnection <= 5,
     };
     setcontainerstatusstate(Containerstatus);
   }, [backendvaluegetter]);
 
-  //   console.log(backendvaluegetter);
-  //   console.log(Anamolyscore)
-  //   console.log(Connectionno)
-  //   console.log(cpuusage)
-  //   console.log(Networkpackets)
-  //   console.log(Attackscore)
-  //   console.log(Status)
-  //   console.log(noofipconnection)
-
-  // console.log(backendvaluegetter?.ml_detection?.suspicious_ip?.ports_accessed?.length)
-
-  // file activity file getter
+  // file activity file getter for initilize
 
   const [fileactivityintilize, setfileactivityintilize] = useState([]);
 
@@ -102,17 +113,78 @@ function App() {
       const response = await axios.get(
         "http://127.0.0.1:5000/api/admin-folder/initialize",
       );
+      console.log("Initilize the data");
       setfileactivityintilize(response.data);
     } catch (err) {
       console.log("Problem in file initilize", err);
     }
   };
 
-  // useEffect(()=>{
-  //   fetchfiledata();
-  // },[])
+  useEffect(() => {
+    fetchfiledata();
+  }, []);
 
-  // console.log(fileactivityintilize, "FIle changes value")
+  const [isfile, setfile] = useState();
+  const [isfilestatus, setfilestatus] = useState();
+  const [istime, settime] = useState();
+
+  useEffect(() => {
+    if (fileactivityintilize) {
+      setfile(fileactivityintilize.files_saved);
+      setfilestatus(fileactivityintilize.status);
+      const timeOnly = fileactivityintilize?.created_at?.split(" ")[4];
+      settime(timeOnly);
+    }
+  }, [fileactivityintilize]);
+
+  // This is for checking scan
+
+  const [ischeckdata, setcheckdata] = useState();
+
+  const fetchcheckfilestatus = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:5000/api/admin-folder/scan",
+      );
+      setcheckdata(response.data);
+    } catch (err) {
+      console.log("Problem in file scan", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchcheckfilestatus(); // immediate API call
+
+    const interval = setInterval(() => {
+      fetchcheckfilestatus();
+    }, 2000); // every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const [isfilecheckno, setfilecheckno] = useState();
+  const [isfilecheckstatus, setfileschecktatus] = useState();
+  const [isfilechecktime, setfilechecktime] = useState();
+  const [iscolor, setcolor] = useState(true);
+
+  useEffect(() => {
+    if (ischeckdata) {
+      setfileschecktatus(ischeckdata.status);
+
+      if (ischeckdata.status === "alert") {
+        setfilecheckno(ischeckdata?.alerts?.[0]?.activity);
+        setcolor(false);
+      } else {
+        setfilecheckno(ischeckdata.message);
+        setcolor(true);
+      }
+
+      const timeOnly = ischeckdata.created_at.split(" ")[4];
+      setfilechecktime(timeOnly);
+    }
+  }, [ischeckdata]);
+
+  // gettind suspecious data from database
 
   return (
     <>
@@ -159,7 +231,12 @@ function App() {
                 value={Attackscore}
                 color={containerstatusstate.attack}
               />
-              <Containers icon={TbReportSearch} name="Status" value={Status} />
+              <Containers
+                icon={TbReportSearch}
+                name="Status"
+                value={Status}
+                color={containerstatusstate.attack}
+              />
               <Containers
                 icon={FiMapPin}
                 name="IP"
@@ -168,14 +245,41 @@ function App() {
               />
             </div>
           </div>
+
+          <div className="Reponseactiondivv">
+            <SuspiciousIPTable />
+          </div>
           <div className="filemonitoringsection">
-            <Filevaluecontainer />
-            <Filevaluecontainer />
+            <Filevaluecontainer
+              files={isfile}
+              status={isfilestatus}
+              time={istime}
+              whichcont={true}
+            />
+            <Filevaluecontainer
+              whichcont={false}
+              files={isfilecheckno}
+              status={isfilecheckstatus}
+              time={isfilechecktime}
+              color={iscolor}
+            />
           </div>
 
-          <div className="rightcontainers">
-            <Graph />
+          <div className="Barchartsectioninapp">
+            <div className="barchart1">
+              <RiskScoreBarChart />
+            </div>
+            <div className="barchart1">
+              <RiskScoreBarChart2/>
+            </div>
+
+            
+            
+            
           </div>
+          <div className="allmetrictablesection">
+              <MetricsTable/>
+            </div>
         </div>
       </div>
     </>

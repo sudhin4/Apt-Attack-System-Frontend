@@ -5,7 +5,7 @@ import { BsCpuFill } from "react-icons/bs";
 
 
 
-    function Containers({name="Data", icon: Icon, value="0", color=true }){
+    function Containers({name="Data", icon: Icon, value="0", color=true, }){
 
         
 
