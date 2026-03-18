@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Allstyle.css";
 import axios from "axios";
+import Serverbusyimage from '../assets/serverbusy.png'
 
 const SuspiciousIPTable = () => {
   const [Getsuspeciousdata, setgetsuspeciousdata] = useState([]);
@@ -43,6 +44,19 @@ const SuspiciousIPTable = () => {
     }
   };
 
+  const [istablevalue,settablevalue] = useState(false);
+
+  useEffect(()=>{
+    if(Getsuspeciousdata.length){
+      settablevalue(true)
+    }
+    else{
+      settablevalue(false)
+    }
+  },[Getsuspeciousdata])
+
+
+
   return (
     <div className="ip-container">
       <h2 className="title">SUSPICIOUS IP MONITORING</h2>
@@ -60,14 +74,14 @@ const SuspiciousIPTable = () => {
         </thead>
 
         <tbody>
-          {Getsuspeciousdata.map((item, index) => {
+          {istablevalue? Getsuspeciousdata.map((item, index) => {
             const isBlocked = blockedRows.includes(index);
 
             return (
               <tr key={index}>
                 <td className="ip valuetable">{item.suspicious_ip}</td>
 
-                <td className="valuetable">{item.network_packets}</td>
+                <td className="networkpackets_susip valuetable">{item.network_packets}</td>
 
                 <td className="score valuetable">{item.risk_score}</td>
 
@@ -97,7 +111,8 @@ const SuspiciousIPTable = () => {
                 </td>
               </tr>
             );
-          })}
+          }): <Novaluinsuspecious/> }
+          
         </tbody>
       </table>
     </div>
@@ -105,3 +120,17 @@ const SuspiciousIPTable = () => {
 };
 
 export default SuspiciousIPTable;
+
+
+export function Novaluinsuspecious(){
+  return(
+    <>
+    <div className="Novaluedivvinsuspeciousvalue">
+      <img src={Serverbusyimage} alt="Server Offline" className="serverimageinnovaluesuspe" />
+    </div>
+    
+    </>
+  )
+}
+
+

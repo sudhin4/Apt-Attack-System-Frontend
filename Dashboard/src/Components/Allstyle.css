@@ -1,32 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.iconforthecontainerr{
+.iconforthecontainerr {
     font-size: 30px;
 }
 
-.Reponsevalue{
+.Reponsevalue {
     font-family: 'Poppins';
     font-weight: 600;
     font-size: 25px;
     position: relative;
     top: 13px;
-   
+
 }
-.Nameofthecontainer{
+
+.Nameofthecontainer {
     font-family: 'Poppins';
     font-weight: 700;
     font-size: 18px;
     color: rgb(255, 255, 255);
 }
 
-.valuediv{
+.valuediv {
     display: flex;
     flex-direction: column;
-   line-height: 0.0;
-   align-items: center;
-  
+    line-height: 0.0;
+    align-items: center;
+
 }
-.Containerdiv{
+
+.Containerdiv {
     display: flex;
     flex-direction: column;
     width: 130px;
@@ -35,17 +37,17 @@
     align-items: center;
     border-radius: 10px;
     color: rgb(255, 255, 255);
-    
+
     background-color: rgb(253, 0, 0);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.boxgreen{
+.boxgreen {
     color: white;
     background-color: rgb(0, 138, 0);
 }
 
-.boxred{
+.boxred {
     color: white;
     background-color: rgb(223, 45, 45)(220, 53, 69);
 }
@@ -53,20 +55,21 @@
 
 
 
-.Grapcomponent{
+.Grapcomponent {
     width: 800px;
     height: 350px;
     /* border: 1px solid rgba(0, 0, 0, 0.155); */
     border-radius: 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-     transition: transform 0.5s ease;
+    transition: transform 0.5s ease;
 }
-.Grapcomponent:hover{
+
+.Grapcomponent:hover {
     transform: scale(1.01);
     cursor: pointer;
 }
 
-.Ipaddresscomp{
+.Ipaddresscomp {
     width: 180px;
     height: 350px;
     /* border: 1px solid rgba(0, 0, 0, 0.174); */
@@ -74,20 +77,21 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     transition: transform 0.5s ease;
 }
-.Ipaddresscomp:hover{
-     transform: scale(1.01);
+
+.Ipaddresscomp:hover {
+    transform: scale(1.01);
     cursor: pointer;
 }
 
-.fullgraphcon{
+.fullgraphcon {
     display: flex;
     flex-direction: row;
     gap: 10px;
     margin-top: 10px;
-    
+
 }
 
-.buttontag{
+.buttontag {
     width: 130px;
     height: 40px;
     font-family: 'Open Sans';
@@ -99,46 +103,53 @@
     border-radius: 5px;
     transition: transform 0.5s ease;
 }
-.buttontag:hover{
+
+.buttontag:hover {
     cursor: pointer;
     transform: scale(1.03);
 }
-.buttontag.red{
+
+.buttontag.red {
     background-color: rgb(186, 11, 11);
     color: white;
 }
-.buttontag.green{
+
+.buttontag.green {
     background-color: rgb(9, 177, 26);
     color: white;
 }
-.buttontag.black{
+
+.buttontag.black {
     background-color: rgb(0, 0, 0);
     color: white;
 }
 
-.iconstyle{
+.iconstyle {
     font-size: 30px;
 }
 
 
 /* FileMonitoring Style */
 
-.iconstyle{
+.iconstyle {
     font-size: 27px;
 }
-.statuss{
+
+.statuss {
     font-family: 'Poppins';
     font-weight: 600;
     font-size: 22px;
 }
-.nameofthecontainer{
+
+.nameofthecontainer {
     font-family: 'Poppins';
     font-weight: 500;
     font-size: 20px;
     position: relative;
     bottom: 20px;
 }
-.firstbox{
+
+.firstbox {
     display: flex;
     flex-direction: column;
     line-height: 0.5;
@@ -149,7 +160,8 @@
     position: relative;
     top: 10px;
 }
-.filevaluecontainerdiv{
+
+.filevaluecontainerdiv {
     display: flex;
     flex-direction: row;
     gap: 20px;
@@ -162,11 +174,13 @@
     border-radius: 10px;
 }
 
-.firstsectionbuttontag{
+
+
+.firstsectionbuttontag {
     width: 150px;
     height: 40px;
     font-family: 'Poppins';
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
     display: flex;
     flex-direction: row;
@@ -174,26 +188,28 @@
     gap: 10px;
     color: rgb(52, 52, 52);
     background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.288);
+    border: none;
     border-radius: 5px;
     justify-content: center;
     cursor: pointer;
-    transition: color 0.5s ease, background-color 0.5s ease;
+    transition: transform 0.5s ease;
 }
-.firstsectionbuttontag:hover{
-    color: white;
-    background-color: black;
+
+.firstsectionbuttontag:hover {
+    transform: scale(1.03);
 }
-.firstsectionicon{
+
+.firstsectionicon {
     font-size: 20px;
 }
-.firstsectionbuttons{
+
+.firstsectionbuttons {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-.secondsectionbuttontag{
+.secondsectionbuttontag {
     width: 100px;
     height: 40px;
     font-family: 'Poppins';
@@ -213,116 +229,135 @@
 
 }
 
-.secondsectionbuttons{
+.secondsectionbuttons {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
-.button1{
+
+.button1 {
     transition: background-color 0.5s ease, color 0.5s ease;
     cursor: pointer;
 }
-.button1:hover{
+
+.button1:hover {
     background-color: rgb(11, 158, 11);
     color: white;
 }
-.button2{
+
+.button2 {
     transition: background-color 0.5s ease, color 0.5s ease;
     cursor: pointer;
 }
-.button2:hover{
+
+.button2:hover {
     background-color: rgb(195, 0, 0);
     color: white;
 }
-.button3{
+
+.button3 {
     transition: background-color 0.5s ease, color 0.5s ease;
     cursor: pointer;
 }
-.button3:hover{
+
+.button3:hover {
     background-color: rgb(0, 0, 0);
     color: white;
 }
-.fullheaderbuttonsection{
+
+.fullheaderbuttonsection {
     display: flex;
     flex-direction: row;
-    gap: 55%;
+    gap: 65%;
     justify-content: center;
     padding-bottom: 20px;
 }
 
-.ip-container{
-  padding:20px;
-  background:white;
-  margin-top: 20px;
+.ip-container {
+    padding: 20px;
+    background: white;
+    margin-top: 20px;
 
 }
 
-.title{
-  text-align:center;
-  margin-bottom:20px;
-  font-family: 'Poppins';
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Poppins';
 }
 
-.ip-table{
-  width:100%;
-  border-collapse:collapse;
+.ip-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20px;
+
+    padding: 30px;
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
 }
 
-.ip-table th{
-  background:black;
-  color:white;
-  padding:10px;
-  font-family: 'Poppins';
+.ip-table th {
+    /* border: 0.5px solid rgba(0, 0, 0, 0.452); */
+    background-color: #ecececdf;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    font-family: 'Poppins';
 }
 
-.ip-table td{
-  padding:10px;
-  border-bottom:1px solid #ddd;
-  font-family: 'Poppins';
-  position: relative;
-  left: 50px;
+.ip-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Poppins';
+    position: relative;
+    left: 50px;
+
 }
 
-.ip{
-  color:red;
-  font-weight:bold;
+.ip {
+    color: red;
+    font-weight: bold;
 }
 
-.score{
-  font-weight:bold;
+.score {
+    font-weight: bold;
 }
 
-.block-btn{
-  background:black;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  cursor:pointer;
+
+.block-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.block-btn:hover{
-  background:red;
+.block-btn:hover {
+    background: red;
 }
 
-.blockingstatus{
-  font-weight:bold;
+.blockingstatus {
+    font-weight: bold;
 }
 
-.blocked{
-  color:red;
-}
-
-.suspicious{
-  color:orange;
-}
-.greenstatus{
-    color: green;
-}
-.redstatus{
+.blocked {
     color: red;
 }
 
-.StatusFromtable{
+.suspicious {
+    color: orange;
+}
+
+.greenstatus {
+    color: green;
+}
+
+.redstatus {
+    color: red;
+}
+
+.StatusFromtable {
     font-size: 20px;
     color: red;
 }
@@ -330,30 +365,30 @@
 
 /* Graph style */
 
-.graph-container{
-display:flex;
-gap:20px;
-padding:20px;
-background:#020b1c;
+.graph-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: #020b1c;
 }
 
-.chart-card{
-flex:1;
-background:#071a35;
-padding:15px;
-border-radius:10px;
-box-shadow:0 0 15px rgba(0,0,0,0.4);
+.chart-card {
+    flex: 1;
+    background: #071a35;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }
 
-.chart-title{
-color:#9bb4ff;
-font-size:14px;
-margin-bottom:10px;
-letter-spacing:1px;
+.chart-title {
+    color: #9bb4ff;
+    font-size: 14px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 
-.barchart1{
+.barchart1 {
     width: max-content;
     height: max-content;
     padding: 20px;
@@ -363,7 +398,7 @@ letter-spacing:1px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.Barchartsectioninapp{
+.Barchartsectioninapp {
     display: flex;
     flex-direction: row;
     gap: 20px;
@@ -372,11 +407,31 @@ letter-spacing:1px;
     margin-top: 30px;
 }
 
-.Lastmetrictablee{
+.Lastmetrictablee {
     width: 90%;
 }
 
-.allmetrictablesection{
+.allmetrictablesection {
     position: relative;
     left: 80px;
+}
+
+.islive{
+    color: white;
+    background-color: green;
+}
+.isnotlive{
+    color: white;
+    background-color: red;
+}
+
+.serverimageinnovaluesuspe{
+    width: 100px;
+    height: 100px;
+}
+
+.Novaluedivvinsuspeciousvalue{
+    position: relative;
+    left: 170%;
+    padding: 30px;
 }

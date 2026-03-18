@@ -28,7 +28,7 @@ import MetricsTable from "./Components/LastMetrics_Table";
 
 function App() {
   const [backendvaluegetter, setbackendvaluegetter] = useState([]); // Apt attack value api usestate
-
+  const [isbackendlive, setbackendlive] = useState(false);
   const [Anamolyscore, setanamoly] = useState([]);
   const [Connectionno, setconnectionno] = useState([]);
   const [cpuusage, setcpuusage] = useState([]);
@@ -41,14 +41,24 @@ function App() {
   //color of status box
   const [statuscolor, setstatuscolor] = useState();
 
+  //Get Initilize the file change value
+
+  const [getinitilizevalue, setinitilizevalue] = useState(false);
+
+  useEffect(() => {
+    console.log(getinitilizevalue, "This is from APP");
+  }, [getinitilizevalue]);
+
   const fetchuser = async () => {
     try {
       const response = await axios.get(
         "http://127.0.0.1:5000/api/detection/detect/realtime",
       );
       setbackendvaluegetter(response.data);
+      setbackendlive(true);
     } catch (err) {
       console.log("Error feteching Data :", err);
+      setbackendlive(false);
     }
   };
   useEffect(() => {
@@ -121,8 +131,12 @@ function App() {
   };
 
   useEffect(() => {
-    fetchfiledata();
-  }, []);
+    if (getinitilizevalue) {
+      fetchfiledata();
+      setinitilizevalue(false)
+    }
+  }, [getinitilizevalue]);
+
 
   const [isfile, setfile] = useState();
   const [isfilestatus, setfilestatus] = useState();
@@ -152,15 +166,17 @@ function App() {
     }
   };
 
+  console.log(ischeckdata,"THe scan data")
+
   useEffect(() => {
     fetchcheckfilestatus(); // immediate API call
 
     const interval = setInterval(() => {
       fetchcheckfilestatus();
-    }, 2000); // every 3 seconds
+    }, 2000); // every 2 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [getinitilizevalue]);
 
   const [isfilecheckno, setfilecheckno] = useState();
   const [isfilecheckstatus, setfileschecktatus] = useState();
@@ -171,7 +187,7 @@ function App() {
     if (ischeckdata) {
       setfileschecktatus(ischeckdata.status);
 
-      if (ischeckdata.status === "alert") {
+      if (ischeckdata.status === "Alert") {
         setfilecheckno(ischeckdata?.alerts?.[0]?.activity);
         setcolor(false);
       } else {
@@ -189,7 +205,10 @@ function App() {
   return (
     <>
       <div className="parentapppsection">
-        <HeaderButtons />
+        <HeaderButtons
+          Livevalue={{ isbackendlive }}
+          sendintitlizevalue={setinitilizevalue}
+        />
         <div className="fulldashboarddiv">
           <div className="containersinapp">
             <div className="leftcontainers">
@@ -270,16 +289,12 @@ function App() {
               <RiskScoreBarChart />
             </div>
             <div className="barchart1">
-              <RiskScoreBarChart2/>
+              <RiskScoreBarChart2 />
             </div>
-
-            
-            
-            
           </div>
           <div className="allmetrictablesection">
-              <MetricsTable/>
-            </div>
+            <MetricsTable />
+          </div>
         </div>
       </div>
     </>
